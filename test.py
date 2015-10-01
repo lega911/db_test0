@@ -11,11 +11,18 @@ import bson
 import pymongo
 import pyorient
 
-db = pymongo.MongoClient('tt_mongo').bb
-client = pyorient.OrientDB("tt_orient", 2424)
+
+def get_mongo():
+    db = pymongo.MongoClient('tt_mongo').bb
+    return db
+
+def get_orient():
+    client = pyorient.OrientDB("tt_orient", 2424)
+    return client
 
 
 def mongo_fill(count):
+    db = get_mongo()
     parents = []
     null = bson.ObjectId()
     for i in range(count):
@@ -35,6 +42,8 @@ def mongo_fill(count):
 
 
 def orient_fill():
+    db = get_mongo()
+    client = get_orient()
     client.connect("root", "0r13ntDB")
 
     if client.db_exists('bb'):
@@ -67,6 +76,7 @@ def orient_fill():
 
 
 def mongo_select():
+    db = get_mongo()
 
     def one(filter):
         result = list(db.user.find({'name': {'$gt': filter}}).sort('name').limit(100))
@@ -85,6 +95,7 @@ def mongo_select():
 
 
 def orient_select():
+    client = get_orient()
     client.db_open('bb', "root", "0r13ntDB")
 
     def one(filter):
