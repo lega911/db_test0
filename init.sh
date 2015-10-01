@@ -1,6 +1,6 @@
 # clone libs
 git clone https://github.com/mogui/pyorient pyorient_lib
-cd ./pyorient_lib; git co v1.4.5; cd ..
+cd ./pyorient_lib; git checkout v1.4.5; cd ..
 git clone https://github.com/mongodb/mongo-python-driver
 
 # start orientdb
