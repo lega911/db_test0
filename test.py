@@ -77,6 +77,7 @@ def mongo_select():
         parents = list(db.user.find({'_id': {'$in': list(parents)}}))
         assert len(result) == 100
 
+    time.sleep(2)
     start = time.time()
     for i in range(100):
         one(str(i))
@@ -91,6 +92,7 @@ def orient_select():
         result = client.query(q)
         assert len(result) == 100
 
+    time.sleep(2)
     start = time.time()
     for i in range(100):
         one(str(i))
